@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Ext";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/css/ext-theme-classic/ext-theme-classic-all-debug.css")
+}
+
+
+<h2>Ext</h2>
+
+
+<script type="text/javascript" >
+
+    document.domain = "localhost";
+
+</script>
+
+
+@section JavaScript
+{
+   <script type="text/javascript" src="@Url.Content("/Scripts/Ext/ext-all-debug.js")"></script>
+   <script type="text/javascript" src="@Url.Content("/Scripts/plugins/pluginSms.js")"></script>
+   <script type="text/javascript" src="@Url.Content("/Scripts/plugins/form-grid.js")"></script>
+}
