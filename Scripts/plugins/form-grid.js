@@ -11,8 +11,8 @@ Ext.onReady(function () {
         items: [
 		{
 		    xtype: "textfield",
-		    label: "TextField"//,
-		    //plugins: ['plugin.sms']
+		    label: "TextField",
+		    plugins: Ext.create('Examples.plugin.Sms')//['plugin.sms']
 		}
 	]
     });
