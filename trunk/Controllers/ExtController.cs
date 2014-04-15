@@ -16,6 +16,13 @@ namespace ExtJsPlugins.Controllers
             return View();
         }
 
+        public ActionResult Clock()
+        {
+            return View();
+        }
+
+
+
         //
         // GET: /Ext/Details/5
 
