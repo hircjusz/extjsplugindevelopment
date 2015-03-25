@@ -1,18 +1,10 @@
 ﻿@{
     ViewBag.Title = "Ext";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //Styles.Render("~/Content/css/ext-theme-classic/ext-theme-classic-all-debug.css");
-    //Styles.Render("~/Content/css/awesomeclock.css");
 }
 
 <h2>Clock</h2>
-
-@*<script type="text/javascript" >
-    document.domain = "localhost";
-</script>*@
-
 @section JavaScript
 {
-   <script type="text/javascript" src="@Url.Content("/Scripts/Ext/ext-all-debug.js")"></script>
-   <script type="text/javascript" src="@Url.Content("/Scripts/plugins/awesomeclock.js")"></script>
+      @Scripts.Render("~/Scripts/plugins/awesomeclock.js")
 }

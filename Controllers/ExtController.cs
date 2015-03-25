@@ -21,7 +21,10 @@ namespace ExtJsPlugins.Controllers
             return View();  
         }
 
-
+        public ActionResult GridSearch()
+        {
+            return View();
+        }
 
         //
         // GET: /Ext/Details/5

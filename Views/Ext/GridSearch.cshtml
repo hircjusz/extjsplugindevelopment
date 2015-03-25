@@ -1,0 +1,14 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "GridSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>GridSearch</h2>
+
+<div id="grid"></div>
+@section JavaScript
+{
+    @Scripts.Render("~/Scripts/plugins/pluginGridSearch.js")
+    @Scripts.Render("~/Scripts/gridsearch/GridSearchGrid.js")
+}
