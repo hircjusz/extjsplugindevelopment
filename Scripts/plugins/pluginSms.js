@@ -62,6 +62,6 @@ Ext.onReady(function () {
         return this.textField.el.select('.plugin-sms');
     }
     });
-Ext.preg('plugin.sms', pluginSms);
+Ext.preg('plugin.sms', pluginSms);  
 
 });
