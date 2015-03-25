@@ -18,7 +18,7 @@ namespace ExtJsPlugins.Controllers
 
         public ActionResult Clock()  
         {
-            return View();
+            return View();  
         }
 
 
