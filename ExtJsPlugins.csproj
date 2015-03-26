@@ -595,9 +595,10 @@
     <Content Include="Content\css\ext-theme-classic\images\window\window-default-sides.gif" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ext\ext-all-debug.js" />
-    <Content Include="Scripts\gridsearch\GridSearchGrid.js" />
-    <Content Include="Scripts\gridsearch\GridSearchWindow.js" />
+    <Content Include="Scripts\view\GridSearchGrid.js" />
+    <Content Include="Scripts\view\GridSearchWindow.js" />
     <Content Include="Scripts\plugins\awesomeclock.js" />
+    <Content Include="Scripts\plugins\pluginClearButton.js" />
     <Content Include="Scripts\plugins\pluginGridSearch.js" />
     <Content Include="Scripts\plugins\form-grid.js" />
     <Content Include="Scripts\plugins\pluginSms.js" />
@@ -631,6 +632,7 @@
     <None Include="Content\css\ext-theme-classic\Readme.md" />
     <Content Include="Views\Ext\Clock.cshtml" />
     <Content Include="Views\Ext\GridSearch.cshtml" />
+    <Content Include="Views\Ext\ClearButton.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

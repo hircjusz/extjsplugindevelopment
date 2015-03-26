@@ -26,6 +26,10 @@ namespace ExtJsPlugins.Controllers
             return View();
         }
 
+        public ActionResult ClearButton()
+        {
+            return View();
+        }
         //
         // GET: /Ext/Details/5
 
