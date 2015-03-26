@@ -79,18 +79,122 @@ Ext.onReady(function () {
                 iconCls: this.iconCls
             }, this.field);
 
+            this.initMenu();
+
+        },
+        initMenu : function() {
+
+            var menu = this.menu;
+            menu.removeAll();
+
+            menu.add(new Ext.menu.CheckItem({
+                text: this.selectAllText,
+                checked: !(this.checkIndexes instanceof Array),
+                hideOnClick: false,
+                handler: function(item) {
+                    var checked = item.checked;
+                    menu.items.each(function(i) {
+                        if (item !== i && i.setChecked && !i.disabled) {
+                            i.setChecked(checked);
+                        }
+                    });
+                }
+            }), '-');
+
+            var cm = this.grid.headerCt.items.items;
+
+            var group = undefined;
+            Ext.each(cm, function (item) {
+                var config = item.initialConfig;
+                var disable = false;
+
+                if (config.header && config.dataIndex) {
+                    Ext.each(this.disableIndexes, function (item) {
+                        disable = disable ? disable :
+                                  item === config.dataIndex;
+                    });
+                    if (!disable) {
+                        menu.add(new Ext.menu.CheckItem({
+                            text: config.header,
+                            hideOnClick: false,
+                            group: group,
+                            checked: 'all' === this.checkIndexes,
+                            dataIndex: config.dataIndex
+                        }));
+                    }
+                }
+            }, this);
+
+            if (this.checkIndexes instanceof Array) {
+                Ext.each(this.checkIndexes, function (di) {
+                    var item = menu.items.find(function (itm) {
+                        return itm.dataIndex === di;
+                    });
+                    if (item) {
+                        item.setChecked(true, true);
+                    }
+                }, this);
+            }
         },
         onKeyUp : function(e, t, o) {
             
-
+            if (e.isNavKeyPress()) {
+                return;
+            }
+            var length = this.field.getValue().toString().length;
+            if (0 === length || this.minChars <= length) {
+                this.onTriggerSearch();
+            }
         },
         onTriggerSearch: function() {
-            
+
+            if (!this.field.isValid()) {
+                return;
+            }
+            var val = this.field.getValue(),
+                store = this.grid.store,
+                proxy = store.getProxy();
+
+            if ('local' === this.mode) {
+                store.clearFilter();
+                if (val) {
+                    store.filterBy(function (r) {
+                        var retval = false;
+                        this.menu.items.each(function (item) {
+                            if (!item.dataIndex || !item.checked || retval) {
+                                return;
+                            }
+
+                            var rv = r.get(item.dataIndex), rv = rv instanceof Date ?
+                                     Ext.Date.format(rv, this.getDateFormat(item)) : rv;
+
+                            var re = new RegExp(Ext.String.escape(val), 'gi');
+                            retval = re.test(rv);
+                        }, this);
+                        if (retval) {
+                            return true;
+                        }
+                        return retval;
+                    }, this);
+                } else {
+                }
+            }
 
         },
-        onTriggerClear : function() {
-            
+        getDateFormat: function (menuItem) {
 
+            var columnNames = Ext.Array.pluck(this.grid.columns, 'dataIndex'),
+                columnIndex = Ext.Array.indexOf(columnNames, menuItem.dataIndex),
+                format = this.grid.columns[columnIndex].format;
+
+            return this.dateFormat || format;
+        },
+        onTriggerClear : function() {
+            if (this.field.getValue()) {
+                this.field.reset();
+                this.field.focus();
+                this.onTriggerSearch();
+            }
         },
         getToolbar: function () {
             var me = this,
