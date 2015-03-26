@@ -6,6 +6,25 @@
  */
 Ext.onReady(function () {
 
-     
+    Ext.define('ns.plugin.ClearButton', {
+        alias: 'plugin.clearbutton',
+        constructor: function (cfg) {
+            Ext.apply(this, cfg);
+
+            this.callParent(arguments);
+        },
+        init: function (textField) {
+            this.textField = textField;
+            if (!textField.rendered) {
+                textField.on('afterrender', this.handleAfterRender, this);
+            }
+            else {
+                // probably an existing input element transformed to extjs field
+                this.handleAfterRender();
+            }
+        },
+        handleAfterRender: function() {
+        }
+    });
 
 });
