@@ -23,8 +23,28 @@ Ext.onReady(function () {
                 this.handleAfterRender();
             }
         },
-        handleAfterRender: function() {
+        handleAfterRender: function () {
+
+            this.TextArea = this.textField.inputEl.dom.type.toLowerCase() == 'textarea';
+            this.createClearButtonEl();
+            this.addListeners();
+        },
+
+        createClearButtonEl: function () {
+            this.createClearButtonEl = this.textField.bodyEl.createChild({
+                tag: 'div',
+                cls:this.clearButtonsCls
+            });
+        },
+        addListeners: function() {
+            
+            var textField = this.textField;
+            var bodyEl = textField.bodyEl;
+
+
         }
+
+
     });
 
 });
