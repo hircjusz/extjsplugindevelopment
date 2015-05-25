@@ -1,0 +1,18 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "MessageBar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="view"></div>
+
+
+@section JavaScript
+{
+      @Scripts.Render("~/Scripts/plugins/messageBar.js")
+    @Scripts.Render("~/Scripts/view/MessageBarView.js")
+}
+@section Styles{
+   @Styles.Render("~/Content/css/messagebar.css")
+}

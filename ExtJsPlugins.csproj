@@ -130,7 +130,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\css\all.css" />
     <Content Include="Content\css\awesomeclock.css" />
+    <Content Include="Content\css\CheckHeader.css" />
+    <Content Include="Content\css\clearbutton.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-debug.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-rtl-debug.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-rtl.css" />
@@ -593,9 +596,39 @@
     <Content Include="Content\css\ext-theme-classic\images\window-header\window-header-default-top-sides.gif" />
     <Content Include="Content\css\ext-theme-classic\images\window\window-default-corners.gif" />
     <Content Include="Content\css\ext-theme-classic\images\window\window-default-sides.gif" />
+    <Content Include="Content\css\images\accept.png" />
+    <Content Include="Content\css\images\border.gif" />
+    <Content Include="Content\css\images\bottom2.gif" />
+    <Content Include="Content\css\images\checked.gif" />
+    <Content Include="Content\css\images\clear-text-icon.gif" />
+    <Content Include="Content\css\images\down2.gif" />
+    <Content Include="Content\css\images\download.gif" />
+    <Content Include="Content\css\images\elbow-minus-nl.gif" />
+    <Content Include="Content\css\images\elbow-plus-nl.gif" />
+    <Content Include="Content\css\images\exclamation.gif" />
+    <Content Include="Content\css\images\information.png" />
+    <Content Include="Content\css\images\left2.gif" />
+    <Content Include="Content\css\images\loading.gif" />
+    <Content Include="Content\css\images\right2.gif" />
+    <Content Include="Content\css\images\saved.png" />
+    <Content Include="Content\css\images\saving.gif" />
+    <Content Include="Content\css\images\tab-collapsed.gif" />
+    <Content Include="Content\css\images\tab-first.gif" />
+    <Content Include="Content\css\images\tab-last.gif" />
+    <Content Include="Content\css\images\tab-scroller-menu.gif" />
+    <Content Include="Content\css\images\top2.gif" />
+    <Content Include="Content\css\images\unchecked.gif" />
+    <Content Include="Content\css\images\up2.gif" />
+    <Content Include="Content\css\images\x-grouptabs-corners.gif" />
+    <Content Include="Content\css\images\zoom.png" />
+    <Content Include="Content\css\ItemSelector.css" />
+    <Content Include="Content\css\LiveSearchGridPanel.css" />
+    <Content Include="Content\css\messagebar.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ext\ext-all-debug.js" />
+    <Content Include="Scripts\plugins\messageBar.js" />
     <Content Include="Scripts\view\ClearButtonView.js" />
+    <Content Include="Scripts\view\MessageBarView.js" />
     <Content Include="Scripts\view\GridSearchGrid.js" />
     <Content Include="Scripts\view\GridSearchWindow.js" />
     <Content Include="Scripts\plugins\awesomeclock.js" />
@@ -634,6 +667,7 @@
     <Content Include="Views\Ext\Clock.cshtml" />
     <Content Include="Views\Ext\GridSearch.cshtml" />
     <Content Include="Views\Ext\ClearButton.cshtml" />
+    <Content Include="Views\Ext\MessageBar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

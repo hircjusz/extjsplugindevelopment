@@ -30,6 +30,11 @@ namespace ExtJsPlugins.Controllers
         {
             return View();
         }
+
+        public ActionResult MessageBar()
+        {
+            return View();
+        }
         //
         // GET: /Ext/Details/5
 

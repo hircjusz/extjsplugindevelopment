@@ -22,19 +22,21 @@ Ext.onReady(function() {
                         xtype: 'textfield',
                         plugins: ['clearbutton'],
                         value: 'textfield'
-                    }, {
-                        xtype: 'textareafield',
-                        //lugins: ['clearbutton'],
-                        value: 'textareafield'
-                    }, {
-                        xtype: 'combobox',
-                        //plugins: ['clearbutton'],
-                        value: 'combobox'
-                    }, {
-                        xtype: 'datefield',
-                        //plugins: ['clearbutton'],
-                        value: new Date()
-                    }]
+                    }
+                    //, {
+                    //    xtype: 'textareafield',
+                    //    //lugins: ['clearbutton'],
+                    //    value: 'textareafield'
+                    //}, {
+                    //    xtype: 'combobox',
+                    //    //plugins: ['clearbutton'],
+                    //    value: 'combobox'
+                    //}, {
+                    //    xtype: 'datefield',
+                    //    //plugins: ['clearbutton'],
+                    //    value: new Date()
+                    //}
+                    ]
                 }]
             });
 
