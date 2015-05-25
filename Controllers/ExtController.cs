@@ -35,6 +35,12 @@ namespace ExtJsPlugins.Controllers
         {
             return View();
         }
+
+        public ActionResult XTemplate()
+        {
+            return View();
+        }
+
         //
         // GET: /Ext/Details/5
 

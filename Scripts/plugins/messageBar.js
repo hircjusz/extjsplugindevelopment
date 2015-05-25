@@ -47,6 +47,10 @@ Ext.onReady(function () {
             });
 
             me.ownerCt.el.createChild(tpl);
+
+            Ext.select('.x-message-bar-close').on('click', function () {
+                me.clearMessage();
+            });
             this.callParent(arguments);
         },
         setMessage: function(o) {
@@ -54,10 +58,38 @@ Ext.onReady(function () {
 
 
         },
+        clearMessage: function() {
+            var bar = Ext.get(this.id + '-bar');
+            if (bar) {
+                bar.slideOut('b',  {
+                    duration: 500,
+                    easing: 'easeOut',
+                    callback: function() {
+                        cmp.select('.x-message-bar-msg').update('');
+                    },
+                    scope: this
+                });
+
+            }
+
+        },
         showMessage: function (cfg) {
             var cmp = Ext.get(this.id + '-bar');
-            cmp.select('.x-message-bar-msg').update(cfg.text);
-            cmp.show();
+
+            if (cmp) {
+                cmp.slideIn('b', {
+                    duration: 500,
+                    easing: 'easeIn',
+                    callback: function () {
+                        cmp.select('.x-message-bar-msg').update(cfg.text);
+                    },
+                    scope: this
+                });
+            }
+
+            //todo icon classes
+           // cmp.select('.x-message-bar-msg').update(cfg.text);
+           // cmp.show();
         }
     });
 

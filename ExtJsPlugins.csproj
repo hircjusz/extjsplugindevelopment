@@ -627,6 +627,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ext\ext-all-debug.js" />
     <Content Include="Scripts\plugins\messageBar.js" />
+    <Content Include="Scripts\templates\XTemplateEx.js" />
     <Content Include="Scripts\view\ClearButtonView.js" />
     <Content Include="Scripts\view\MessageBarView.js" />
     <Content Include="Scripts\view\GridSearchGrid.js" />
@@ -668,6 +669,7 @@
     <Content Include="Views\Ext\GridSearch.cshtml" />
     <Content Include="Views\Ext\ClearButton.cshtml" />
     <Content Include="Views\Ext\MessageBar.cshtml" />
+    <Content Include="Views\Ext\XTemplate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
