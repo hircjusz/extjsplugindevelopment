@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Navigation";
+    //http://www.awwwards.com/4-creative-navigation-ui-patterns-for-great-ux.html
+}
+@section Styles{
+     @Styles.Render("~/Content/css/navigation.css")
+}
+
+<header id="header">
+            
+
+<nav class="main">
+    <div class="logo">
+        <strong><a href="/" title="Awwwards : Best websites around the World">Awwwards</a></strong>
+    </div>
+    <ul class="menu right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/awards-of-the-day/">Winners</a></li>
+        <li><a href="/nominees/">Nominees</a></li>
+        <li><a href="/directory/">Directory</a></li>
+        <li><a href="/shop/">Shop</a></li>
+        <li><a href="/jobs/">Jobs</a></li>
+        <li class="active"><a href="/blog/">Blog</a></li>
+        <li><a href="/about-us/">About us</a></li>
+        <li class="submit">
+            <a href="/submit/" class="bold">Submit Your Site</a>
+        </li>
+        <li class="search">
+            <span class="bt-search"></span>
+        </li>
+    </ul>
+    <div class="search-text">
+                <form id="search-text" method="get" action="/search-articles/">
+            <input type="text" name="text" class="text">
+            <button type="submit" name="submit" class="bt-search"></button>
+            <ul>
+                <li><strong>Search in</strong></li>
+                <li>
+                    <input data-url="/websites/" type="radio" name="search-section" id="search-websites" checked="">
+                    <label for="search-websites">Websites</label>
+                </li>
+                <li>
+                    <input data-url="/directory/search/" type="radio" name="search-section" id="search-users">
+                    <label for="search-users">Users</label>
+                </li>
+                <li>
+                    <input data-url="/directory/search/" type="radio" name="search-section" id="search-blog">
+                    <label for="search-blog">Blog</label>
+                </li>
+            </ul>
+        </form>
+    </div>
+</nav>
+
+        
+    </header>
