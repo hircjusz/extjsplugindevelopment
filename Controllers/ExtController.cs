@@ -41,6 +41,15 @@ namespace ExtJsPlugins.Controllers
             return View();
         }
 
+        public ActionResult GroupingGrid()
+        {
+            return View();
+        }
+
+        public ActionResult DomHelper()
+        {
+            return View();
+        }
         //
         // GET: /Ext/Details/5
 
