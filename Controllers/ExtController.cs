@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ExtJsPlugins.Models;
 
 namespace ExtJsPlugins.Controllers
 {
@@ -46,10 +47,24 @@ namespace ExtJsPlugins.Controllers
             return View();
         }
 
+
+        public ActionResult SessionModel()
+        {
+            return View();
+        }
+
         public ActionResult DomHelper()
         {
             return View();
         }
+
+        public JsonResult CreateSession(SessionModel session)
+        {
+            session.id = 14;
+
+            return Json(session);
+        }
+
         //
         // GET: /Ext/Details/5
 
