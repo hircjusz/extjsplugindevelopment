@@ -136,6 +136,7 @@
     <Content Include="Content\css\awesomeclock.css" />
     <Content Include="Content\css\CheckHeader.css" />
     <Content Include="Content\css\clearbutton.css" />
+    <Content Include="Content\css\components.css" />
     <Content Include="Content\css\navigation.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-debug.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-rtl-debug.css" />
@@ -631,6 +632,7 @@
     <Content Include="Scripts\dom\dom.js" />
     <Content Include="Scripts\Ext\ext-all-debug.js" />
     <Content Include="Scripts\groupingGrid\grouping.js" />
+    <Content Include="Scripts\plugins\customComponents.js" />
     <Content Include="Scripts\plugins\messageBar.js" />
     <Content Include="Scripts\store\SessionModel.js" />
     <Content Include="Scripts\templates\XTemplateEx.js" />

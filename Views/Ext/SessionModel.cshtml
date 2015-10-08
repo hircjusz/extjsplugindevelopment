@@ -6,13 +6,15 @@
 }
 
 <div id="view"></div>
+<div id='div1' class='myDiv'> </div>
 
 
 @section JavaScript
 {
-      @Scripts.Render("~/Scripts/store/SessionModel.js")
+    @*@Scripts.Render("~/Scripts/store/SessionModel.js")*@
+    @Scripts.Render("~/Scripts/plugins/customComponents.js")
    
 }
 @section Styles{
-
+@Styles.Render("~/Content/css/components.css")
 }
