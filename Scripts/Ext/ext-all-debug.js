@@ -16048,7 +16048,7 @@ Ext.define('Ext.XTemplate', {
 
     /**
      * @cfg {String/Array} definitions
-     * Optional. A statement, or array of statements which set up `var`s which may then
+     * Optional. A statement, or array of statementsrender which set up `var`s which may then
      * be accessed within the scope of the generated function.
      */
 

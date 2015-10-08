@@ -110,4 +110,43 @@
     myTplAdvCars.compile();
     myTplAdvCars.append(document.body, myTplData);
 
+    var myPanel = Ext.create('Ext.panel.Panel',{
+        //xtype: 'panel',
+        height: 100,
+        width: 100,
+        html: 'Hello!',
+        renderTo: document.body,
+        frame:true
+    });
+
+    Ext.define('mycustom.field1', {
+        extend: 'Ext.Component',
+        renderTo: document.body,
+        renderTpl: '<input type="text">{name}</input>',
+        data: { name: 'LeVeon' }
+        //html:'custom component'
+    });
+    var myCustomComponent = Ext.create('mycustom.field1');
+
+    //Ext.create('Ext.container.Viewport', {
+    //    layout: 'border',
+    //    items: [
+    //        {
+    //            height: 75,
+    //            region: 'north',
+    //            title: 'Does Santa live here?'
+    //        },
+    //        {
+    //            width: 150,
+    //            region: 'west',
+    //            title: 'The west region rules'
+    //        },
+    //        {
+    //            region: 'center',
+    //            title: 'No, this region rules!'
+    //        }
+    //    ]
+    //});
+
+
 });
