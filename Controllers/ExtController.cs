@@ -22,6 +22,11 @@ namespace ExtJsPlugins.Controllers
             return View();  
         }
 
+        public ActionResult GridCellEditors()
+        {
+            return View();
+        }
+
         public ActionResult GridSearch()
         {
             return View();

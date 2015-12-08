@@ -631,6 +631,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\dom\dom.js" />
     <Content Include="Scripts\Ext\ext-all-debug.js" />
+    <Content Include="Scripts\groupingGrid\pluginCellEditing.js" />
     <Content Include="Scripts\groupingGrid\grouping.js" />
     <Content Include="Scripts\plugins\customComponents.js" />
     <Content Include="Scripts\plugins\messageBar.js" />
@@ -681,6 +682,7 @@
     <Content Include="Views\Ext\DomHelper.cshtml" />
     <Content Include="Views\CSS\Navigation.cshtml" />
     <Content Include="Views\Ext\SessionModel.cshtml" />
+    <Content Include="Views\Ext\GridCellEditors.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
