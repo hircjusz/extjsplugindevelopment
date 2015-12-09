@@ -456,11 +456,27 @@
         
         Ext.create('Ext.form.field.ComboBox', {
             renderTo:document.body,
-            store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black']
+            store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black'],
+            listConfig: {
+                 getInnerTpl: function() {
+                      return '<h3>{title} ({status})</h3>' + '<div class="reportedBy">Reported by {raisedBy}</div>' + '{body}';
+                 }
+        }
+            //initRenderData: function() {
+            //    var data = this.__proto__.initRenderData();
+            //    return data;
+            //}
         });
 
 
     };
 
-    comboBoxes();
+    var storesInMemory = function() {
+
+        var store = Ext.create('Ext.data.Store', {
+            
+
+
+        });
+    };
 });

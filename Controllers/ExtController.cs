@@ -62,12 +62,18 @@ namespace ExtJsPlugins.Controllers
         {
             return View();
         }
+        //STORE METHODS
 
         public JsonResult CreateSession(SessionModel session)
         {
             session.id = 14;
 
             return Json(session);
+        }
+
+        public JsonResult GetRecordsCustomProxy(string filter,string page,string start,string limit)
+        {
+            return Json(new object() {  });
         }
 
         //

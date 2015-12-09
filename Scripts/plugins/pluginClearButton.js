@@ -74,13 +74,42 @@ Ext.onReady(function () {
                 tag: 'div',
                 cls: this.clearButtonCls
             });
+            this.createClearButtonEl.setStyle('visibility', 'hidden');
         },
         addListeners: function() {
             
-            var textField = this.textField;
-            var bodyEl = textField.bodyEl;
+            // listeners on clear button (DOM/El level)
+            var clearButtonEl = this.createClearButtonEl;
+
+            clearButtonEl.on('click', this.handleMouseClickOnClearButton, this);
+            clearButtonEl.on('mouseover', this.handleMouseOverClearButton, this);
 
 
+        },
+        
+        handleMouseOverClearButton: function (event, htmlElement, object) {
+            event.stopEvent();
+            if (this.textField.bodyEl.contains(event.getRelatedTarget())) {
+                // has been handled in handleMouseOutOfInputField() to prevent double update
+                return;
+            }
+            this.createClearButtonEl.addCls(this.clearButtonCls + '-mouse-over-button');
+            this.createClearButtonEl.setVisible(true);
+            //this.updateClearButtonVisibility();
+        },
+        /**
+         * Tada - the real action: If user left clicked on the clear button, then empty the field
+         */
+        handleMouseClickOnClearButton: function (event, htmlElement, object) {
+            if (!this.isLeftButton(event)) {
+                return;
+            }
+            this.textField.setValue('');
+            this.textField.focus();
+        },
+        
+        isLeftButton: function(event) {
+            return event.button === 0;
         },
         repositionClearButton: function () {
             var clearButtonEl = this.createClearButtonEl;
