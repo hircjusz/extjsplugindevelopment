@@ -560,8 +560,16 @@
             collapsible: true,
             layout: 'fit',
             title: 'Simple DataView (0 items selected)',
-
+            tbar: [
+                {
+                    text:'GetChanges',
+                    handler: function() {
+                        var t= this.dataView;
+                    }
+                }
+            ],
             items: [{
+                ref:'../dataView',
                 xtype: 'dataview',
                 plugins: [new Ext.create('ns.plugin.dataviewEditor', {dataIndex:'text'})],
                 store: store,
