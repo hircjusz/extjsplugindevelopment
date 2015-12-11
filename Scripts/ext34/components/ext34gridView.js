@@ -6,9 +6,29 @@
  */
 Ext.onReady(function () {    
 
+    //Ext.define('LogEntry', {
+    //    extend: 'Ext.data.Model',
+    //    fields: [
+    //       { name: 'text' }
+          
+    //    ]
+    //});
+
+    var store = Ext.create('Ext.data.Store', {
+      //  model: 'LogEntry',
+        data: [
+            { text: 'item 1' },
+            { text: 'item 2' },
+            { text: 'item 3' },
+            { text: 'item 4' },
+            { text: 'item 5' }
+        ]
+    });
+
 
     var panel = new Ext.Panel({
         id: 'images-view',
+        renderTo:document.body,
         frame: true,
         width: 535,
         autoHeight: true,
@@ -17,7 +37,19 @@ Ext.onReady(function () {
         title: 'Simple DataView (0 items selected)',
         
         items:[{
-            text:'Hello'
+            xtype: 'dataview',
+            store: store,
+            tpl: Ext.create('Ext.XTemplate',
+                '<tpl for=".">',
+                    '<div class="logentry">',
+                        '<span>{text}</span>',
+                        '<div class="removeicon"></div>',
+                    '</div>',
+                '</tpl>'
+            ),
+            itemSelector: 'div.logentry',
+            trackOver: true,
+            overItemCls: 'logentry-hover'
         }]
     });
 

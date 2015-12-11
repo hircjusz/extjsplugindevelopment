@@ -220,7 +220,7 @@
         }
             );
 
-       var store=  Ext.create('Ext.data.Store', {
+        var store = Ext.create('Ext.data.Store', {
             id: 'imagesStore',
             model: 'ns.Image',
             data: [
@@ -229,12 +229,12 @@
         { src: 'http://www.sencha.com/img/20110215-feat-html5.png', caption: 'Overhauled Theme' },
         { src: 'http://www.sencha.com/img/20110215-feat-perf.png', caption: 'Performance Tuned' }
             ]
-       });
+        });
 
-       Ext.util.Observable.capture(store, function (evname) { console.log(evname, arguments); });
+        Ext.util.Observable.capture(store, function (evname) { console.log(evname, arguments); });
 
 
-       var searchedStore = Ext.data.StoreManager.lookup('imagesStore');
+        var searchedStore = Ext.data.StoreManager.lookup('imagesStore');
 
         var imageTpl = new Ext.XTemplate(
                     '<tpl for=".">',
@@ -270,7 +270,7 @@
             margin: '10 10',
             style: {
                 borderColor: 'black',
-                borderStyle:'solid'
+                borderStyle: 'solid'
             },
             listeners: {
 
@@ -307,161 +307,161 @@
         //    renderTo: document.body
         //});
 
-        Ext.Component({ 
+        Ext.Component({
             renderTo: document.body,
 
-            tpl: '{name} is {age} years old and lives in {location}', 
+            tpl: '{name} is {age} years old and lives in {location}',
 
-            data: { 
-                age: 25, 
-                location: 'Italy', 
-                name: 'Mario' 
-            } 
+            data: {
+                age: 25,
+                location: 'Italy',
+                name: 'Mario'
+            }
         });
 
-        var summary = new Ext.Component({ 
+        var summary = new Ext.Component({
             renderTo: document.body,
 
-            tpl: '{name} is {age} years old and lives in {location}', 
+            tpl: '{name} is {age} years old and lives in {location}',
 
-            data: { 
-                age: 29, 
-                location: 'Italy', 
-                name: 'Mario' 
-            } 
-        }); 
+            data: {
+                age: 29,
+                location: 'Italy',
+                name: 'Mario'
+            }
+        });
 
-       var button= new Ext.button.Button({ 
+        var button = new Ext.button.Button({
             renderTo: document.body,
 
-            handler: function() { 
-                summary.update({ 
-                    age: 78, 
-                    location: 'Japan', 
-                    name: 'Aimee' 
-                }); 
-            } 
+            handler: function () {
+                summary.update({
+                    age: 78,
+                    location: 'Japan',
+                    name: 'Aimee'
+                });
+            }
         });
 
 
 
-       var cmp= new Ext.Component({ 
+        var cmp = new Ext.Component({
 
-           renderTo: document.body,
-           autoEl: 'div' , 
-           data: ['London', 'Paris', 'Moscow', 'New York', 'Tokyo'], 
+            renderTo: document.body,
+            autoEl: 'div',
+            data: ['London', 'Paris', 'Moscow', 'New York', 'Tokyo'],
 
-           tpl: [ 
-                   '<tpl for=".">', 
-                       '<li>{.}</li>', 
-                   '</tpl>' 
-           ] 
-       });
+            tpl: [
+                    '<tpl for=".">',
+                        '<li>{.}</li>',
+                    '</tpl>'
+            ]
+        });
 
-       var toogleClass= new Ext.Component({ 
-           renderTo:document.body,
-           autoEl: 'div', 
-           data: ['London', 'Paris', 'Moscow', 'New York', 'Tokyo'], 
+        var toogleClass = new Ext.Component({
+            renderTo: document.body,
+            autoEl: 'div',
+            data: ['London', 'Paris', 'Moscow', 'New York', 'Tokyo'],
 
-           listeners: { 
-               // Add the listener to the component's main el 
-               el: { 
-                   // Use a CSS class to filter the propagated clicks 
-                   delegate: '.list-row', 
+            listeners: {
+                // Add the listener to the component's main el 
+                el: {
+                    // Use a CSS class to filter the propagated clicks 
+                    delegate: '.list-row',
 
-                   click: function(ev, li) { 
-                       // Toggle a CSS class on the li when it is clicked 
-                       Ext.fly(li).toggleCls('list-row-selected'); 
-                   } 
-               } 
-           }, 
+                    click: function (ev, li) {
+                        // Toggle a CSS class on the li when it is clicked 
+                        Ext.fly(li).toggleCls('list-row-selected');
+                    }
+                }
+            },
 
-           tpl: [ 
-                   '<tpl for=".">', 
-                       '<li class="list-row">{.}</li>', 
-                   '</tpl>' 
-           ] 
-       });
+            tpl: [
+                    '<tpl for=".">',
+                        '<li class="list-row">{.}</li>',
+                    '</tpl>'
+            ]
+        });
 
-       Ext.define('TitledComponent', {
-           extend: 'Ext.Component',
-           renderTo:document.body,
-           baseCls: 'titled-component',
-           childEls: ['body', 'headerEl'],
+        Ext.define('TitledComponent', {
+            extend: 'Ext.Component',
+            renderTo: document.body,
+            baseCls: 'titled-component',
+            childEls: ['body', 'headerEl'],
 
-           renderTpl: [
-               '<h4 id="{id}-headerEl" class="{baseCls}-header">{header:htmlEncode}</h4>',
-               '<div id="{id}-body" class="{baseCls}-body">{% this.renderContent(out, values) %}</div>'
-           ],
+            renderTpl: [
+                '<h4 id="{id}-headerEl" class="{baseCls}-header">{header:htmlEncode}</h4>',
+                '<div id="{id}-body" class="{baseCls}-body">{% this.renderContent(out, values) %}</div>'
+            ],
 
-           getTargetEl: function () {
-               return this.body;
-           },
+            getTargetEl: function () {
+                return this.body;
+            },
 
-           // Override the default implementation to add in the header text 
-           initRenderData: function () {
-               var data = this.callParent();
+            // Override the default implementation to add in the header text 
+            initRenderData: function () {
+                var data = this.callParent();
 
-               // Add the header property to the renderData 
-               data.header = this.header;
+                // Add the header property to the renderData 
+                data.header = this.header;
 
-               return data;
-           },
+                return data;
+            },
 
-           setHeader: function (header) {
-               this.header = header;
+            setHeader: function (header) {
+                this.header = header;
 
-               // The headerEl will only exist after rendering 
-               if (this.headerEl) {
-                   this.headerEl.update(Ext.util.Format.htmlEncode(header));
-               }
-           }
-       });
+                // The headerEl will only exist after rendering 
+                if (this.headerEl) {
+                    this.headerEl.update(Ext.util.Format.htmlEncode(header));
+                }
+            }
+        });
 
-       Ext.define('BiographyComponent', { 
-           extend: 'TitledComponent', 
-           xtype: 'biography', 
- 
-           header: 'Biography', 
-           tpl: '{name} is {age:plural("year")} old and lives in {location}', 
- 
-           // Override update to automatically set the date in the header 
-           update: function(data) { 
-               this.callParent(arguments); 
- 
-               this.setHeader('Biography updated at ' ); 
-           } 
-       });
-        
-        var summary2 = new Ext.create('BiographyComponent',{
-           data: {
-               age: 26,
-               location: 'Italy',
-               name: 'Mario'
-           }
-       });
+        Ext.define('BiographyComponent', {
+            extend: 'TitledComponent',
+            xtype: 'biography',
 
+            header: 'Biography',
+            tpl: '{name} is {age:plural("year")} old and lives in {location}',
 
+            // Override update to automatically set the date in the header 
+            update: function (data) {
+                this.callParent(arguments);
+
+                this.setHeader('Biography updated at ');
+            }
+        });
+
+        var summary2 = new Ext.create('BiographyComponent', {
+            data: {
+                age: 26,
+                location: 'Italy',
+                name: 'Mario'
+            }
+        });
 
 
-       Ext.util.Observable.capture(cmp, function (evname) { console.log(evname, arguments); });
 
-        Ext.util.Observable.capture( Ext.Component({ 
-            renderTo:document.body
+
+        Ext.util.Observable.capture(cmp, function (evname) { console.log(evname, arguments); });
+
+        Ext.util.Observable.capture(Ext.Component({
+            renderTo: document.body
         }), function (evname) { console.log(evname, arguments); });
 
     };
 
-    var comboBoxes = function() {
-        
+    var comboBoxes = function () {
+
         Ext.create('Ext.form.field.ComboBox', {
-            renderTo:document.body,
+            renderTo: document.body,
             store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black'],
             listConfig: {
-                 getInnerTpl: function() {
-                      return '<h3>{title} ({status})</h3>' + '<div class="reportedBy">Reported by {raisedBy}</div>' + '{body}';
-                 }
-        }
+                getInnerTpl: function () {
+                    return '<h3>{title} ({status})</h3>' + '<div class="reportedBy">Reported by {raisedBy}</div>' + '{body}';
+                }
+            }
             //initRenderData: function() {
             //    var data = this.__proto__.initRenderData();
             //    return data;
@@ -471,12 +471,122 @@
 
     };
 
-    var storesInMemory = function() {
+    var dataView = function () {
+
+        Ext.define('LogEntry', {
+            extend: 'Ext.data.Model',
+            fields: [
+               { name: 'text' }
+
+            ]
+        });
 
         var store = Ext.create('Ext.data.Store', {
-            
+            model: 'LogEntry',
+            data: [
+                { text: 'item 1' },
+                { text: 'item 2' },
+                { text: 'item 3' },
+                { text: 'item 4' },
+                { text: 'item 5' }
+            ]
+        });
 
+        Ext.define('ns.plugin.dataviewEditor', {
+            alias: 'plugin.dataviewEditor',
+            extend: 'Ext.Editor',
+            completeOnEnter: true,
+            cancelOnEnter: true,
+            hideEl: false,
+            labelSelector: 'span',
+            shim: false,
+            alignment:'tl-tl',
+
+            constructor: function (cfg) {
+                Ext.apply(this, cfg);
+                this.field = new Ext.form.TextField({
+                    allowBlank: false,
+                    selectionOnFocus: true
+                });
+
+                this.superclass.constructor.call(this, cfg);
+                //this.callParent(arguments);
+            },
+
+            init: function (view) {
+                this.view = view;
+                view.on('render', this.initEditor, this);
+                this.on('complete', this.onSave, this);
+
+            },
+            onSave: function(ed,value) {
+                this.activeRecord.set(this.dataIndex, value);
+                delete this.activeRecord;
+            },
+            initEditor: function () {
+                this.view.on({
+                    scope: this,
+                    containerclick: this.doBlur,
+                    click: this.doBlur
+                });
+                this.view.getEl().on('mousedown', this.onMouseDown, this, { delegate: this.labelSelector });
+            },
+            doBlur: function () {
+                if (this.editing) {
+                    this.field.blur();
+                }
+            },
+            onMouseDown: function (e, target) {
+                if (!e.ctrlKey && !e.shiftKey &&!this.activeRecord) {
+                    var item = this.view.findItemByChild(target);
+                    e.stopEvent();
+                    var record = this.view.store.getAt(this.view.indexOf(item));
+                    this.startEdit(target, record.data[this.dataIndex]);
+                    this.activeRecord = record;
+                } else {
+                    e.preventDefault();
+                }
+            }
 
         });
+
+
+        var panel = new Ext.Panel({
+            id: 'images-view',
+            renderTo: document.body,
+            frame: true,
+            width: 535,
+            autoHeight: true,
+            collapsible: true,
+            layout: 'fit',
+            title: 'Simple DataView (0 items selected)',
+            tbar: [
+                {
+                    text:'GetChanges',
+                    handler: function() {
+                        var t= this.dataView;
+                    }
+                }
+            ],
+            items: [{
+                ref:'../dataView',
+                xtype: 'dataview',
+                plugins: [new Ext.create('ns.plugin.dataviewEditor', {dataIndex:'text'})],
+                store: store,
+                tpl: Ext.create('Ext.XTemplate',
+                    '<tpl for=".">',
+                        '<div class="logentry">',
+                            '<span>{text}</span>',
+                            '<div class="removeicon"></div>',
+                        '</div>',
+                    '</tpl>'
+                ),
+                itemSelector: 'div.logentry',
+                trackOver: true,
+                overItemCls: 'logentry-hover'
+            }]
+        });
     };
+
+    dataView();
 });
