@@ -500,7 +500,7 @@
             hideEl: false,
             labelSelector: 'span',
             shim: false,
-            alignment:'tl-tl',
+            alignment: 'tl-tl',
 
             constructor: function (cfg) {
                 Ext.apply(this, cfg);
@@ -519,7 +519,7 @@
                 this.on('complete', this.onSave, this);
 
             },
-            onSave: function(ed,value) {
+            onSave: function (ed, value) {
                 this.activeRecord.set(this.dataIndex, value);
                 delete this.activeRecord;
             },
@@ -537,7 +537,7 @@
                 }
             },
             onMouseDown: function (e, target) {
-                if (!e.ctrlKey && !e.shiftKey &&!this.activeRecord) {
+                if (!e.ctrlKey && !e.shiftKey && !this.activeRecord) {
                     var item = this.view.findItemByChild(target);
                     e.stopEvent();
                     var record = this.view.store.getAt(this.view.indexOf(item));
@@ -562,16 +562,16 @@
             title: 'Simple DataView (0 items selected)',
             tbar: [
                 {
-                    text:'GetChanges',
-                    handler: function() {
-                        var t= this.dataView;
+                    text: 'GetChanges',
+                    handler: function () {
+                        var t = this.dataView;
                     }
                 }
             ],
             items: [{
-                ref:'../dataView',
+                ref: '../dataView',
                 xtype: 'dataview',
-                plugins: [new Ext.create('ns.plugin.dataviewEditor', {dataIndex:'text'})],
+                plugins: [new Ext.create('ns.plugin.dataviewEditor', { dataIndex: 'text' })],
                 store: store,
                 tpl: Ext.create('Ext.XTemplate',
                     '<tpl for=".">',
@@ -588,5 +588,114 @@
         });
     };
 
-    dataView();
+    var dataViewEditors = function () {
+
+        Ext.define('LogEntry', {
+            extend: 'Ext.data.Model',
+            fields: [
+               { name: 'text' },
+               { name: 'date' }
+
+            ]
+        });
+
+        var store = Ext.create('Ext.data.Store', {
+            model: 'LogEntry',
+            data: [
+                { text: 'item 1', date: '12-12-2015' },
+                { text: 'item 2', date: '12-12-2015' },
+                { text: 'item 3', date: '12-12-2015' },
+                { text: 'item 4', date: '12-12-2015' },
+                { text: 'item 5', date: '12-12-2015' }
+            ]
+        });
+
+        Ext.define('ns.editabelDataView', {
+            extend: 'Ext.DataView',
+            store: store,
+            tpl: Ext.create('Ext.XTemplate',
+                '<tpl for=".">',
+                '<div class="logentry">',
+                '<span class="item-text-cls">{text}</span>',
+                '<div class="removeicon"></div>',
+                '</div>',
+                '</tpl>'
+            ),
+            columns: [{
+                dataIndex: 'text',
+                cls: 'item-text-cls',
+                editor: {
+                    xtype: 'textfield',
+                    allowBlank: false
+
+                }
+            }],
+            itemSelector: 'div.logentry',
+            trackOver: true,
+            overItemCls: 'logentry-hover',
+            enableEdit: function () {
+                var me = this;
+
+                if (this.editors && this.editors.length > 0) {
+                    this.completeEdit();
+                }
+                this.editors = [];
+
+                Ext.each(this.getNodes(), function(el) {
+                    var item = Ext.get(el).down('.item-text-cls');
+
+                    var fm = new Ext.form.TextField({
+                        allowBlank: false
+                    });
+
+                    var editor = new Ext.Editor({
+                        field: fm,
+                        completeOnEnter: false,
+                        updateEl: true,
+                        allowBlur: false
+                    });
+                    me.editors.push(editor);
+                    editor.startEdit(item);
+
+                });
+            },
+            completeEdit: function() {
+
+                Ext.each(this.editors, function(ed) {
+                    ed.completeEdit();
+                });
+
+            }
+        });
+
+        var panel = new Ext.Panel({
+            renderTo: document.body,
+            frame: true,
+            width: 535,
+            autoHeight: true,
+            collapsible: true,
+            layout: 'fit',
+            title: 'Simple DataView (0 items selected)',
+            tbar: [
+                {
+                    text: 'Enable Edit',
+                    handler: function () {
+                        this.ownerCt.ownerCt.items.get(0).enableEdit();
+                    }
+                }, {
+                    text: 'Complete Edit',
+                    handler: function () {
+                        this.ownerCt.ownerCt.items.get(0).completeEdit();
+                    }
+                }
+            ],
+            items: [
+                new Ext.create('ns.editabelDataView')
+            ]
+        });
+
+
+    };
+
+    dataViewEditors();
 });
