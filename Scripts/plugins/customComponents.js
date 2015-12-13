@@ -654,15 +654,9 @@
                 for (j = 0; j < this.getNodes().length; j++) {
                     var i ;
                     for (i = 0; i < me.columns.length; i++) {
+
                         var cm = me.columns[i];
                         var item = Ext.get(this.getNodes()[j]).down('.' + cm.cls);
-
-                        //var fm = new Ext.form.TextField({
-                        //    allowBlank: false
-                        //});
-                        //var fm = Ext.create('Ext.form.field.ComboBox', {
-                        //    store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black']
-                        //});
 
                         var editor = new Ext.Editor({
                             field: cm.editor,
@@ -684,7 +678,7 @@
                     ed.completeEdit();
                     ed.record.set(ed.fieldRecord, ed.getValue());
                 });
-
+                var modified = me.store.getModifiedRecords();
             }
         });
 
