@@ -617,6 +617,7 @@
                 '<tpl for=".">',
                 '<div class="logentry">',
                 '<span class="item-text-cls">{text}</span>',
+                '<span class="item-date-cls">{date}</span>',
                 '<div class="removeicon"></div>',
                 '</div>',
                 '</tpl>'
@@ -626,6 +627,14 @@
                 cls: 'item-text-cls',
                 editor: {
                     xtype: 'textfield',
+                    allowBlank: false
+
+                }
+            }, {
+                dataIndex: 'date',
+                cls: 'item-date-cls',
+                editor: {
+                    xtype: 'datefield',
                     allowBlank: false
 
                 }
@@ -640,29 +649,40 @@
                     this.completeEdit();
                 }
                 this.editors = [];
+                var j ;
 
-                Ext.each(this.getNodes(), function(el) {
-                    var item = Ext.get(el).down('.item-text-cls');
+                for (j = 0; j < this.getNodes().length; j++) {
+                    var i ;
+                    for (i = 0; i < me.columns.length; i++) {
+                        var cm = me.columns[i];
+                        var item = Ext.get(this.getNodes()[j]).down('.' + cm.cls);
 
-                    var fm = new Ext.form.TextField({
-                        allowBlank: false
-                    });
+                        //var fm = new Ext.form.TextField({
+                        //    allowBlank: false
+                        //});
+                        //var fm = Ext.create('Ext.form.field.ComboBox', {
+                        //    store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black']
+                        //});
 
-                    var editor = new Ext.Editor({
-                        field: fm,
-                        completeOnEnter: false,
-                        updateEl: true,
-                        allowBlur: false
-                    });
-                    me.editors.push(editor);
-                    editor.startEdit(item);
+                        var editor = new Ext.Editor({
+                            field: cm.editor,
+                            completeOnEnter: false,
+                            updateEl: true,
+                            allowBlur: false,
+                            record: me.store.getAt(j),
+                            fieldRecord: cm.dataIndex
+                        });
+                        me.editors.push(editor);
+                        editor.startEdit(item,editor.record.get(cm.dataIndex));
+                    };
 
-                });
+                };
             },
             completeEdit: function() {
-
-                Ext.each(this.editors, function(ed) {
+                var me = this;
+                Ext.each(this.editors, function (ed) {
                     ed.completeEdit();
+                    ed.record.set(ed.fieldRecord, ed.getValue());
                 });
 
             }
