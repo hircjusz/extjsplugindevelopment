@@ -711,5 +711,100 @@
 
     };
 
-    dataViewEditors();
+    var comboBoxTemplates = function() {
+
+        Ext.define('AMShiva.ux.custom.Combo', {
+            extend: 'Ext.form.field.ComboBox',
+            alias: 'widget.ux_combo',
+
+
+            colorField: 'color',//to get color value
+            displayField: 'text',
+            valueField: 'value',
+            
+            editable: false,
+            defaultAutoCreate: { tag: "div", tabindex: '0' },
+           // displayField: 'template',
+            multiple: false,
+            triggerAction: 'all',
+            trigger2Class: 'x-window-trigger',
+            trigger3Class: 'x-question-trigger',
+            templateIndex: 'template',
+            fieldsDefinitionIndex: 'fields',
+
+            assertValue: Ext.emptyFn,
+
+            initComponent: function () {
+                var me = this;
+                // dropdown item template
+                me.tpl = Ext.create('Ext.XTemplate',
+                            '<tpl for=".">',
+                            '<div class="x-boundlist-item">',
+                            '<span style="background-color: {' + me.colorField + '};" class="color-box-icon"></span>{' + me.displayField + '}',
+                            '</div>',
+                            '</tpl>'
+                        );
+                this.store= Ext.create('Ext.data.Store', {
+                    fields: ['value', 'text', 'color'],
+                    data: [
+                        { value: 'Val1', text: 'text1', color: 'red' },
+                    { value: 'Val2', text: 'text2', color: 'blue' }]
+                });
+
+                me.callParent(arguments);
+
+                // here change the selection item html
+                me.on('change',
+                    function (element, newValue) {
+                        var inputEl = element.inputCell.child('input');
+                        var data = element.getStore().findRecord(element.valueField, newValue);
+
+                        if (data) {
+                            inputEl.applyStyles('padding-left:26px');
+                            var parent = inputEl.parent(),
+                                spanDomEle = parent.child('span');
+
+                            if (!spanDomEle) {
+                                Ext.DomHelper.insertFirst(parent, { tag: 'span', cls: 'color-box-icon' });
+                                var newSpanDomEle = parent.child('span');
+                                newSpanDomEle.applyStyles('background-color: ' + data.get(element.colorField) + ';float: left;position: absolute;margin: 3px 2px 2px 4px;');
+                            } else {
+                                spanDomEle.applyStyles('background-color:' + data.get(element.colorField));
+                            }
+                        }
+                    });
+            },
+            initTrigger: function () {
+                if (this.triggerEl) {
+                    this.triggerEl.remove();
+                }
+                var insertEl = this.triggerCell.elements[0];
+                this.triggerEl = insertEl.createChild(this.triggerConfig || { tag: "img", src: '/Content/images/loading.gif', alt: "", cls: " x-form-trigger x-question-trigger " + this.triggerCls });
+                this.triggerEl.elements = [];
+                this.superclass.initTrigger.call(this);
+
+                //this.trigger = this.wrap.createChild(this.triggerConfig || { tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.triggerClass }, this.el);
+                //Ext.extensions.form.standardnotation.StandardNotation.superclass.initTrigger.call(this);
+
+                this.trigger2 = insertEl.createChild({ tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger x-form-trigger2 " + this.trigger2Class });
+                this.mon(this.trigger2, 'click', this.onTrigger2Click, this, { preventDefault: true });
+                this.trigger2.addClsOnOver('x-form-trigger-over');
+                this.trigger2.addClsOnClick('x-form-trigger-click');
+
+                this.trigger3 = insertEl.createChild({ tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger x-form-trigger3 " + this.trigger3Class });
+                this.mon(this.trigger3, 'click', this.onTrigger3Click, this, { preventDefault: true });
+                this.trigger3.addClsOnOver('x-form-trigger-over');
+                this.trigger3.addClsOnClick('x-form-trigger-click');
+
+                //this.triggerEl[this.store.autoStore ? 'addClass' : 'removeClass']('x-hide-display');
+                //this.trigger2[this.records.length ? 'removeClass' : 'addClass']('x-hide-display');
+                //this.trigger3[this.records.length ? 'removeClass' : 'addClass']('x-hide-display');
+            }
+        });
+
+        Ext.create('AMShiva.ux.custom.Combo', { renderTo: document.body });
+
+    };
+
+    comboBoxTemplates();
 });

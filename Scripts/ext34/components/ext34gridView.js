@@ -294,6 +294,50 @@ Ext.onReady(function() {
         });
 
     };
-    panelEditor();
+
+        var standardNotationComboBox = function() {
+            /*globals ActiveXObject, DOMParser, XMLSerializer*/
+            Ext.ns('Ext.extensions.form.standardnotation');
+
+            // TODO: maxlength
+            // TODO: fire autosize after value change
+            // Comdbo zapisów standardowych
+            Ext.extensions.form.standardnotation.StandardNotation = Ext.extend(Ext.form.ComboBox, {
+                editable: false,
+                defaultAutoCreate: { tag: "div", tabindex: '0' },
+                displayField: 'template',
+                multiple: false,
+                triggerAction: 'all',
+                trigger2Class: 'x-window-trigger',
+                trigger3Class: 'x-question-trigger',
+                templateIndex: 'template',
+                fieldsDefinitionIndex: 'fields',
+                initTrigger: function () {
+                    this.trigger.remove();
+
+                    this.trigger = this.wrap.createChild(this.triggerConfig || { tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.triggerClass }, this.el);
+                    Ext.extensions.form.standardnotation.StandardNotation.superclass.initTrigger.call(this);
+
+                    this.trigger2 = this.wrap.createChild({ tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger x-form-trigger2 " + this.trigger2Class }, this.el);
+                    this.mon(this.trigger2, 'click', this.onTrigger2Click, this, { preventDefault: true });
+                    this.trigger2.addClassOnOver('x-form-trigger-over');
+                    this.trigger2.addClassOnClick('x-form-trigger-click');
+
+                    this.trigger3 = this.wrap.createChild({ tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger x-form-trigger3 " + this.trigger3Class }, this.el);
+                    this.mon(this.trigger3, 'click', this.onTrigger3Click, this, { preventDefault: true });
+                    this.trigger3.addClassOnOver('x-form-trigger-over');
+                    this.trigger3.addClassOnClick('x-form-trigger-click');
+
+                    this.trigger[this.store.autoStore ? 'addClass' : 'removeClass']('x-hide-display');
+                    this.trigger2[this.records.length ? 'removeClass' : 'addClass']('x-hide-display');
+                    this.trigger3[this.records.length ? 'removeClass' : 'addClass']('x-hide-display');
+                },
+            });
+            Ext.reg('sncombo', Ext.extensions.form.standardnotation.StandardNotation);
+
+            Ext.create(Ext.extensions.form.standardnotation.StandardNotation, { renderTo: document.body });
+        };
+
+    standardNotationComboBox();
 
 });

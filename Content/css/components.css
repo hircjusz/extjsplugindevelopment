@@ -10,3 +10,224 @@
 .logentry {
     padding: 20px 40px 2px 20px;
 }
+.color-box-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0px 4px 0px -3px;
+    padding: 0px 8px;
+}
+
+.x-question-trigger {
+    background-image: url(images/download.gif);
+    margin-left: -5px;
+}
+
+/*!
+ * Ext JS Library 3.4.0
+ * Copyright(c) 2006-2011 Sencha Inc.
+ * licensing@sencha.com
+ * http://www.sencha.com/license
+ */
+.x-combo-list {
+    border-color:#ccc;
+    background-color:#ddd;
+    font:normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.x-combo-list-inner {
+    background-color:#fff;
+}
+
+.x-combo-list-hd {
+    font:bold 11px tahoma, arial, helvetica, sans-serif;
+    color:#333;
+    background-image: url(../../../images/extjs/gray/layout/panel-title-light-bg.gif);
+    border-bottom-color:#BCBCBC;
+}
+
+.x-resizable-pinned .x-combo-list-inner {
+    border-bottom-color:#BEBEBE;
+}
+
+.x-combo-list-item {
+    border-color:#fff;
+    min-height: 15px;
+    line-height: 15px;
+}
+
+.x-combo-list .x-combo-selected{
+    border-color:#777 !important;
+    background-color:#f0f0f0;
+}
+
+.x-combo-list .x-toolbar {
+    border-top-color:#BCBCBC;
+}
+
+.x-combo-list-small {
+    font:normal 11px tahoma, arial, helvetica, sans-serif;
+}
+
+/* Standard notation*/
+.x-agreement-list, .x-editor-list {
+    border-color:#ccc;
+    background-color:#ddd;
+    font:normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.x-agreement-list-inner, .x-editor-list-inner {
+    background-color:#fff;
+}
+
+.x-agreement-list-hd, .x-editor-list-hd {
+    font:bold 11px tahoma, arial, helvetica, sans-serif;
+    color:#333;
+    background-image: url(../../../images/extjs/gray/layout/panel-title-light-bg.gif);
+    border-bottom-color:#BCBCBC;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap > .x-form-trigger,
+.x-form-field-wrap.x-standardnotation-wrap > .x-form-trigger.x-form-trigger2,
+.x-form-field-wrap.x-standardnotation-wrap > .x-form-trigger.x-form-trigger3 {
+    display: block;
+    float: right;
+    margin-top: 1px;
+    position: static;
+}
+
+.x-form-field-wrap .x-form-trigger.x-mask-trigger {
+    background-image: url(../../../images/loading.gif) !important;
+    background-position: 0 2px;
+    display: none;
+}
+
+.x-form-field-wrap.x-loading .x-form-trigger {
+    display: none;
+}
+
+.x-form-field-wrap.x-loading .x-form-trigger.x-mask-trigger {
+    display: inline;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap.x-loading .x-form-trigger.x-mask-trigger {
+    display: block;
+}
+
+label.x-standardnotation-field {
+    background: url(../../../images/extjs/gray/form/sn-field.png) repeat-x left bottom;
+    cursor: pointer;
+    padding: 0 0 3px 0;
+}
+label.x-standardnotation-field:hover {
+    background-image: url(../../../images/extjs/gray/form/sn-field-hover.png);
+}
+label.x-standardnotation-field.x-standardnotation-field-invalid {
+    background-image: url(../../../images/extjs/gray/form/sn-field-invalid.png);
+}
+
+label.x-standardnotation-field-editing {
+    display: inline-block;
+    margin: 0 4px;
+    overflow: hidden;
+    padding: 0 5px;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap {
+    white-space: normal;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap > div.x-form-field {
+    background: #ffffff url(/Content/images/extjs/gray/form/text-bg.gif) repeat-x 0 0;
+    border: 1px solid #C1C1C1;
+    box-sizing: border-box;
+    min-height: 22px;
+    line-height: 20px;
+    padding: 0px 0px 0px 3px;
+    width: 100%;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap > div.x-form-field.x-form-invalid {
+    background-color: #ffeeee;
+    background-image: none;
+    border-color: #cc3300;
+}
+.x-form-field-wrap.x-standardnotation-wrap > div.x-form-field.x-form-invalid.x-standardnotation-empty {
+    background-image:  url(/Content/images/extjs/gray/grid/invalid_line.gif);
+    background-position: left bottom;
+    background-repeat: repeat-x;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap > div.x-form-field .x-standardnotation-container {
+    cursor: auto;
+}
+
+.x-form-field-wrap.x-standardnotation-wrap div.x-form-field label {
+    /*display: inline-block;*/
+    height: 20px;
+    /*margin-right: 3px;*/
+    vertical-align: top;
+}
+
+.x-standardnotation-container {
+    min-height: 22px;
+}
+
+.x-combo-list.x-multi-combo-list .x-combo-list-item {
+    background-image: url(../../../images/menu/unchecked.gif);
+    background-position: left center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    padding-left: 20px;
+}
+
+.x-combo-list.x-multi-combo-list .x-combo-list-item.x-combo-selected {
+    background-color: transparent;
+    background-image: url(../../../images/menu/checked.gif);
+    border-color: transparent !important;
+}
+
+.x-combo-list.x-multi-combo-list .x-combo-list-item:hover {
+    background-color: #f0f0f0;
+    border-color: #777 !important;
+    border-style: dotted;
+}
+
+.x-standardnotation-add {
+    background-image: url(../../../images/extjs/gray/form/sn-add.png);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.x-standardnotation-remove {
+    background-image: url(../../../images/extjs/gray/form/sn-remove.png);
+    cursor: pointer;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.x-layer.x-editor-list, .x-layer.x-agreement-list-inner, .x-layer.x-standardnotation-list  {
+    overflow: auto;
+}
+
+.x-standardnotation-multiple .x-standardnotation-container {
+    padding-left: 16px;
+}
+
+.x-standardnotation-multiple .x-standardnotation-container .x-standardnotation-remove {
+    margin-left: -16px;
+}
+
+.x-standardnotation-list .x-combo-list-item {
+    white-space: normal;
+}
+
+.x-standardnotation-list .x-combo-list-item b {
+}
+
+.x-standardnotation-list .x-combo-list-item i {
+    color: gray;
+    font-style: normal;
+}
