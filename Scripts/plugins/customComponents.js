@@ -1,6 +1,6 @@
-﻿Ext.onReady(function () {
+﻿Ext.onReady(function() {
 
-    var myExamples1 = function () {
+    var myExamples1 = function() {
         var myDiv1 = Ext.get('div1');
 
         //myDiv1.on('click', function() {
@@ -103,7 +103,7 @@
             '<br/>',
             '</div>',
             '</tpl>', {
-                isCamry: function (car) {
+                isCamry: function(car) {
                     return car === 'Camry';
                 }
             }
@@ -131,72 +131,77 @@
 
     };
 
-    var myPluginReadonlyField = function () {
+    var myPluginReadonlyField = function() {
 
         Ext.define('Ext.ux.ReadOnlyField', {
             alias: 'plugin.readonlybutton',
-            init: function (parent) {
+            init: function(parent) {
                 this.parent = parent;
                 this.initEventHandlers();
                 this.parent.save = this.save;
             },
-            save: function () {
+            save: function() {
                 if (this.rendered) {
                     this.displayEl.update(this.getValue());
                     this.displayEl.show();
                     this.inputEl.hide();
                 }
             },
-            initEventHandlers: function () {
+            initEventHandlers: function() {
                 this.parent.on({
                     render: this.onParentRender,
                     scope: this
                 });
-            }, onParentRender: function (field) {
+            },
+            onParentRender: function(field) {
                 field.displayEl =
                     Ext.DomHelper.append(field.bodyEl, {
                         tag: 'div',
                         style:
-                            {
-                                height: '22px',
-                                "line-height": '18px',
-                                margin: '2px 0 0 5px'
-                            }
+                        {
+                            height: '22px',
+                            "line-height": '18px',
+                            margin: '2px 0 0 5px'
+                        }
                     }, true).setVisibilityMode(Ext.Element.DISPLAY);
                 field.inputEl.setVisibilityMode(Ext.Element.DISPLAY);
             }
         });
 
         var form = Ext.create('Ext.form.Panel',
-            {
-                renderTo: Ext.getBody(),
-                bbar: [{ xtype: 'button', text: 'Edit' },
-                    {
-                        xtype: 'button',
-                        text: 'Save',
-                        handler: function () {
-                            form.items.get(0).save();
-                        }
-                    },
-                    { xtype: 'button', text: 'Cancel' }],
-                items: [{
+        {
+            renderTo: Ext.getBody(),
+            bbar: [
+                { xtype: 'button', text: 'Edit' },
+                {
+                    xtype: 'button',
+                    text: 'Save',
+                    handler: function() {
+                        form.items.get(0).save();
+                    }
+                },
+                { xtype: 'button', text: 'Cancel' }
+            ],
+            items: [
+                {
                     xtype: 'textfield',
                     fieldLabel: 'Email Address',
                     plugins: ['readonlybutton']
-                }]
-            });
+                }
+            ]
+        });
     };
 
 
-    var mySubmitButton = function () {
+    var mySubmitButton = function() {
 
         Ext.define('ns.component.Submit', {
             extend: 'Ext.Component',
             renderTo: document.body,
             autoEl: { tag: 'input', cls: 'custom_loginbtn', type: 'submit', value: 'Submit' },
             listeners: {
-                afterrender: function (inputCmp) {
-                    inputCmp.mon(inputCmp.el, 'click', function () {
+                afterrender: function(inputCmp) {
+                    inputCmp.mon(inputCmp.el, 'click', function() {
                         alert('click');
                     });
                 }
@@ -209,54 +214,58 @@
     };
 
 
-    var viewImage = function () {
+    var viewImage = function() {
 
         Ext.define('ns.Image', {
-            extend: 'Ext.data.Model',
-            fields: [
-                { name: 'src', type: 'string' },
-                { name: 'caption', type: 'string' }
-            ]
-        }
-            );
+                extend: 'Ext.data.Model',
+                fields: [
+                    { name: 'src', type: 'string' },
+                    { name: 'caption', type: 'string' }
+                ]
+            }
+        );
 
         var store = Ext.create('Ext.data.Store', {
             id: 'imagesStore',
             model: 'ns.Image',
             data: [
-                 { src: 'http://www.sencha.com/img/20110215-feat-drawing.png', caption: 'Drawing & Charts' },
-        { src: 'http://www.sencha.com/img/20110215-feat-data.png', caption: 'Advanced Data' },
-        { src: 'http://www.sencha.com/img/20110215-feat-html5.png', caption: 'Overhauled Theme' },
-        { src: 'http://www.sencha.com/img/20110215-feat-perf.png', caption: 'Performance Tuned' }
+                { src: 'http://www.sencha.com/img/20110215-feat-drawing.png', caption: 'Drawing & Charts' },
+                { src: 'http://www.sencha.com/img/20110215-feat-data.png', caption: 'Advanced Data' },
+                { src: 'http://www.sencha.com/img/20110215-feat-html5.png', caption: 'Overhauled Theme' },
+                { src: 'http://www.sencha.com/img/20110215-feat-perf.png', caption: 'Performance Tuned' }
             ]
         });
 
-        Ext.util.Observable.capture(store, function (evname) { console.log(evname, arguments); });
+        Ext.util.Observable.capture(store, function(evname) { console.log(evname, arguments); });
 
 
         var searchedStore = Ext.data.StoreManager.lookup('imagesStore');
 
         var imageTpl = new Ext.XTemplate(
-                    '<tpl for=".">',
-                      '<div style="margin: 20px; border:1px solid black" class="thumb-wrap">',
-                        '<img src="{src}" />',
-                        '<br/><span>{caption}</span>',
-                      '</div>',
-                    '</tpl>'
-                );
+            '<tpl for=".">',
+            '<div style="margin: 20px; border:1px solid black" class="thumb-wrap">',
+            '<img src="{src}" />',
+            '<br/><span>{caption}</span>',
+            '</div>',
+            '</tpl>'
+        );
 
         var itemContextMenu = Ext.create('Ext.menu.Menu', {
             renderTo: Ext.getBody(),
-            items: [{
-                text: 'item context menu'
-            }]
+            items: [
+                {
+                    text: 'item context menu'
+                }
+            ]
         });
 
         var containerContextMenu = Ext.create('Ext.menu.Menu', {
             renderTo: Ext.getBody(),
-            items: [{
-                text: 'container context menu'
-            }]
+            items: [
+                {
+                    text: 'container context menu'
+                }
+            ]
         });
 
         var view = Ext.create('Ext.view.View', {
@@ -273,8 +282,7 @@
                 borderStyle: 'solid'
             },
             listeners: {
-
-                itemcontextmenu: function (view, record, item, index, e) {
+                itemcontextmenu: function(view, record, item, index, e) {
                     if (console)
                         console.log('item context menu');
 
@@ -282,7 +290,7 @@
                     itemContextMenu.showAt(e.getXY());
                 },
 
-                containercontextmenu: function (view, e) {
+                containercontextmenu: function(view, e) {
                     if (console)
                         console.log('container context menu');
 
@@ -300,7 +308,7 @@
 
         });
 
-        Ext.util.Observable.capture(view, function (evname) { console.log(evname, arguments); });
+        Ext.util.Observable.capture(view, function(evname) { console.log(evname, arguments); });
 
         //Ext.Component({
         //    autoEl: 'form',
@@ -334,7 +342,7 @@
         var button = new Ext.button.Button({
             renderTo: document.body,
 
-            handler: function () {
+            handler: function() {
                 summary.update({
                     age: 78,
                     location: 'Japan',
@@ -344,17 +352,15 @@
         });
 
 
-
         var cmp = new Ext.Component({
-
             renderTo: document.body,
             autoEl: 'div',
             data: ['London', 'Paris', 'Moscow', 'New York', 'Tokyo'],
 
             tpl: [
-                    '<tpl for=".">',
-                        '<li>{.}</li>',
-                    '</tpl>'
+                '<tpl for=".">',
+                '<li>{.}</li>',
+                '</tpl>'
             ]
         });
 
@@ -369,7 +375,7 @@
                     // Use a CSS class to filter the propagated clicks 
                     delegate: '.list-row',
 
-                    click: function (ev, li) {
+                    click: function(ev, li) {
                         // Toggle a CSS class on the li when it is clicked 
                         Ext.fly(li).toggleCls('list-row-selected');
                     }
@@ -377,9 +383,9 @@
             },
 
             tpl: [
-                    '<tpl for=".">',
-                        '<li class="list-row">{.}</li>',
-                    '</tpl>'
+                '<tpl for=".">',
+                '<li class="list-row">{.}</li>',
+                '</tpl>'
             ]
         });
 
@@ -394,12 +400,12 @@
                 '<div id="{id}-body" class="{baseCls}-body">{% this.renderContent(out, values) %}</div>'
             ],
 
-            getTargetEl: function () {
+            getTargetEl: function() {
                 return this.body;
             },
 
             // Override the default implementation to add in the header text 
-            initRenderData: function () {
+            initRenderData: function() {
                 var data = this.callParent();
 
                 // Add the header property to the renderData 
@@ -408,7 +414,7 @@
                 return data;
             },
 
-            setHeader: function (header) {
+            setHeader: function(header) {
                 this.header = header;
 
                 // The headerEl will only exist after rendering 
@@ -426,7 +432,7 @@
             tpl: '{name} is {age:plural("year")} old and lives in {location}',
 
             // Override update to automatically set the date in the header 
-            update: function (data) {
+            update: function(data) {
                 this.callParent(arguments);
 
                 this.setHeader('Biography updated at ');
@@ -442,23 +448,21 @@
         });
 
 
-
-
-        Ext.util.Observable.capture(cmp, function (evname) { console.log(evname, arguments); });
+        Ext.util.Observable.capture(cmp, function(evname) { console.log(evname, arguments); });
 
         Ext.util.Observable.capture(Ext.Component({
             renderTo: document.body
-        }), function (evname) { console.log(evname, arguments); });
+        }), function(evname) { console.log(evname, arguments); });
 
     };
 
-    var comboBoxes = function () {
+    var comboBoxes = function() {
 
         Ext.create('Ext.form.field.ComboBox', {
             renderTo: document.body,
             store: ['Red', 'Yellow', 'Green', 'Brown', 'Blue', 'Pink', 'Black'],
             listConfig: {
-                getInnerTpl: function () {
+                getInnerTpl: function() {
                     return '<h3>{title} ({status})</h3>' + '<div class="reportedBy">Reported by {raisedBy}</div>' + '{body}';
                 }
             }
@@ -471,13 +475,12 @@
 
     };
 
-    var dataView = function () {
+    var dataView = function() {
 
         Ext.define('LogEntry', {
             extend: 'Ext.data.Model',
             fields: [
-               { name: 'text' }
-
+                { name: 'text' }
             ]
         });
 
@@ -502,7 +505,7 @@
             shim: false,
             alignment: 'tl-tl',
 
-            constructor: function (cfg) {
+            constructor: function(cfg) {
                 Ext.apply(this, cfg);
                 this.field = new Ext.form.TextField({
                     allowBlank: false,
@@ -513,17 +516,17 @@
                 //this.callParent(arguments);
             },
 
-            init: function (view) {
+            init: function(view) {
                 this.view = view;
                 view.on('render', this.initEditor, this);
                 this.on('complete', this.onSave, this);
 
             },
-            onSave: function (ed, value) {
+            onSave: function(ed, value) {
                 this.activeRecord.set(this.dataIndex, value);
                 delete this.activeRecord;
             },
-            initEditor: function () {
+            initEditor: function() {
                 this.view.on({
                     scope: this,
                     containerclick: this.doBlur,
@@ -531,12 +534,12 @@
                 });
                 this.view.getEl().on('mousedown', this.onMouseDown, this, { delegate: this.labelSelector });
             },
-            doBlur: function () {
+            doBlur: function() {
                 if (this.editing) {
                     this.field.blur();
                 }
             },
-            onMouseDown: function (e, target) {
+            onMouseDown: function(e, target) {
                 if (!e.ctrlKey && !e.shiftKey && !this.activeRecord) {
                     var item = this.view.findItemByChild(target);
                     e.stopEvent();
@@ -563,39 +566,40 @@
             tbar: [
                 {
                     text: 'GetChanges',
-                    handler: function () {
+                    handler: function() {
                         var t = this.dataView;
                     }
                 }
             ],
-            items: [{
-                ref: '../dataView',
-                xtype: 'dataview',
-                plugins: [new Ext.create('ns.plugin.dataviewEditor', { dataIndex: 'text' })],
-                store: store,
-                tpl: Ext.create('Ext.XTemplate',
-                    '<tpl for=".">',
+            items: [
+                {
+                    ref: '../dataView',
+                    xtype: 'dataview',
+                    plugins: [new Ext.create('ns.plugin.dataviewEditor', { dataIndex: 'text' })],
+                    store: store,
+                    tpl: Ext.create('Ext.XTemplate',
+                        '<tpl for=".">',
                         '<div class="logentry">',
-                            '<span>{text}</span>',
-                            '<div class="removeicon"></div>',
+                        '<span>{text}</span>',
+                        '<div class="removeicon"></div>',
                         '</div>',
-                    '</tpl>'
-                ),
-                itemSelector: 'div.logentry',
-                trackOver: true,
-                overItemCls: 'logentry-hover'
-            }]
+                        '</tpl>'
+                    ),
+                    itemSelector: 'div.logentry',
+                    trackOver: true,
+                    overItemCls: 'logentry-hover'
+                }
+            ]
         });
     };
 
-    var dataViewEditors = function () {
+    var dataViewEditors = function() {
 
         Ext.define('LogEntry', {
             extend: 'Ext.data.Model',
             fields: [
-               { name: 'text' },
-               { name: 'date' }
-
+                { name: 'text' },
+                { name: 'date' }
             ]
         });
 
@@ -622,37 +626,39 @@
                 '</div>',
                 '</tpl>'
             ),
-            columns: [{
-                dataIndex: 'text',
-                cls: 'item-text-cls',
-                editor: {
-                    xtype: 'textfield',
-                    allowBlank: false
+            columns: [
+                {
+                    dataIndex: 'text',
+                    cls: 'item-text-cls',
+                    editor: {
+                        xtype: 'textfield',
+                        allowBlank: false
 
-                }
-            }, {
-                dataIndex: 'date',
-                cls: 'item-date-cls',
-                editor: {
-                    xtype: 'datefield',
-                    allowBlank: false
+                    }
+                }, {
+                    dataIndex: 'date',
+                    cls: 'item-date-cls',
+                    editor: {
+                        xtype: 'datefield',
+                        allowBlank: false
 
+                    }
                 }
-            }],
+            ],
             itemSelector: 'div.logentry',
             trackOver: true,
             overItemCls: 'logentry-hover',
-            enableEdit: function () {
+            enableEdit: function() {
                 var me = this;
 
                 if (this.editors && this.editors.length > 0) {
                     this.completeEdit();
                 }
                 this.editors = [];
-                var j ;
+                var j;
 
                 for (j = 0; j < this.getNodes().length; j++) {
-                    var i ;
+                    var i;
                     for (i = 0; i < me.columns.length; i++) {
 
                         var cm = me.columns[i];
@@ -667,14 +673,14 @@
                             fieldRecord: cm.dataIndex
                         });
                         me.editors.push(editor);
-                        editor.startEdit(item,editor.record.get(cm.dataIndex));
+                        editor.startEdit(item, editor.record.get(cm.dataIndex));
                     };
 
                 };
             },
             completeEdit: function() {
                 var me = this;
-                Ext.each(this.editors, function (ed) {
+                Ext.each(this.editors, function(ed) {
                     ed.completeEdit();
                     ed.record.set(ed.fieldRecord, ed.getValue());
                 });
@@ -693,12 +699,12 @@
             tbar: [
                 {
                     text: 'Enable Edit',
-                    handler: function () {
+                    handler: function() {
                         this.ownerCt.ownerCt.items.get(0).enableEdit();
                     }
                 }, {
                     text: 'Complete Edit',
-                    handler: function () {
+                    handler: function() {
                         this.ownerCt.ownerCt.items.get(0).completeEdit();
                     }
                 }
@@ -718,13 +724,13 @@
             alias: 'widget.ux_combo',
 
 
-            colorField: 'color',//to get color value
+            colorField: 'color', //to get color value
             displayField: 'text',
             valueField: 'value',
-            
+
             editable: false,
             defaultAutoCreate: { tag: "div", tabindex: '0' },
-           // displayField: 'template',
+            // displayField: 'template',
             multiple: false,
             triggerAction: 'all',
             trigger2Class: 'x-window-trigger',
@@ -734,28 +740,29 @@
 
             assertValue: Ext.emptyFn,
 
-            initComponent: function () {
+            initComponent: function() {
                 var me = this;
                 // dropdown item template
                 me.tpl = Ext.create('Ext.XTemplate',
-                            '<tpl for=".">',
-                            '<div class="x-boundlist-item">',
-                            '<span style="background-color: {' + me.colorField + '};" class="color-box-icon"></span>{' + me.displayField + '}',
-                            '</div>',
-                            '</tpl>'
-                        );
-                this.store= Ext.create('Ext.data.Store', {
+                    '<tpl for=".">',
+                    '<div class="x-boundlist-item">',
+                    '<span style="background-color: {' + me.colorField + '};" class="color-box-icon"></span>{' + me.displayField + '}',
+                    '</div>',
+                    '</tpl>'
+                );
+                this.store = Ext.create('Ext.data.Store', {
                     fields: ['value', 'text', 'color'],
                     data: [
                         { value: 'Val1', text: 'text1', color: 'red' },
-                    { value: 'Val2', text: 'text2', color: 'blue' }]
+                        { value: 'Val2', text: 'text2', color: 'blue' }
+                    ]
                 });
 
                 me.callParent(arguments);
 
                 // here change the selection item html
                 me.on('change',
-                    function (element, newValue) {
+                    function(element, newValue) {
                         var inputEl = element.inputCell.child('input');
                         var data = element.getStore().findRecord(element.valueField, newValue);
 
@@ -774,7 +781,7 @@
                         }
                     });
             },
-            initTrigger: function () {
+            initTrigger: function() {
                 if (this.triggerEl) {
                     this.triggerEl.remove();
                 }
@@ -806,5 +813,330 @@
 
     };
 
-    comboBoxTemplates();
+    var domHelperEx = function() {
+
+        Ext.DomHelper.append(document.body, {tag:'a',href:'http://google.pl',html:'My Link',target:'_blank'});
+        var el = Ext.get('preExistingDiv');
+        Ext.DomHelper.append(el, { tag: 'div', id: 'append', html: 'append' });
+
+        Ext.DomHelper.insertAfter(el, {
+            tag: 'div',
+            id: 'insertAfter',
+            cn:[
+            {
+                tag:'ul',id:'list',
+                cn:[
+                {
+                    tag:'li',html:'element a'
+                }, { tag: 'li', html: 'element b' },
+                {tag:'li',html:'element c'}
+                ]
+            }]
+        });
+
+        Ext.DomHelper.insertFirst('list',{tag:'li',html:'inserted element'});
+        Ext.DomHelper.insertFirst(el, { tag: 'li', html: 'inserted Before' });
+
+        function handleKeyUp(e) {
+            var code = e.keyCode ? e.keyCode : e.which;
+            if (code === 38) { //up key
+                alert('up');
+            } else if (code === 40) { //down key
+                alert('down');
+            }
+        }
+        var tileDiv = new Ext.Element({
+            tag: 'div',
+            id: 'tileId',
+            cls: 'tile',
+            html: '<h1>Hello world</h1>',
+            listeners: {
+                keyup: handleKeyUp,
+                scope: this
+            }
+        });
+        //Ext.DomHelper.insertHtml(el, el.dom, tileDiv);
+
+        var spec = {
+            tag: "form",
+            cn: [
+            {
+                name: "parentNode",
+                type: "text",
+                tag: "input"
+            }, {
+                name: "parentNode2",
+                type: "radio",
+                tag: "input"
+            }, {
+                name: "parentNode2",
+                type: "checkbox",
+                tag: "input"
+            }]
+        };
+
+
+         Ext.DomHelper.append(Ext.getBody(), spec);
+    };
+
+    //domHelperEx();
+
+    var eventAggregator= function() 
+    {
+        Ext.define('EventAggregator', {
+            singleton: true,
+            mixins: {
+                observable: 'Ext.util.Observable'
+            },
+            events: [
+                'userloggedin',
+                'userloginError',
+                'useraccountcreated',
+                'useraccountcreationError',
+                'brokerageaccountcreated',
+                'brokerageaccountcreationError',
+                'externalaccountcreated',
+                'externalaccountcreationError',
+                'brokerageaccountedited',
+                'brokerageaccounteditError',
+                'brokerageaccountsstoreloaded',
+                'brokerageaccountschartstoreloaded',
+                'brokerageaccountsstoreloadError',
+                'instrumentsstoreloaded',
+                'instrumentsstoreloadError',
+                'ordercanceled',
+                'ordercancellationError',
+                'orderestimatecreated',
+                'orderestimatecreationError',
+                'ordercreated',
+                'ordercreationError',
+                'marketpricerecieved',
+                'marketpricerecieveError',
+                'transactionsstoreloaded',
+                'transactionsstoreloadError',
+                'externalaccountsstoreloaded',
+                'externalaccountsstoreloadError',
+                'transferprocessed',
+                'transferprocessError',
+                'tradeordercomplianceError',
+                'ordersstoreloaded',
+                'ordersstoreloadError'
+            ],
+            hasListeners: {},
+
+            publish: function publish(eventName, eventArgs, customArgs) {
+                EventAggregator.fireEvent(eventName, eventArgs, eventName, customArgs);
+            },
+
+            subscribeForever: function subscribeForever(eventName, eventHandler, scopeObject) {
+                EventAggregator.addListener(eventName, eventHandler, scopeObject);
+            },
+
+            subscribe: function subscribe(eventName, eventHandler, scopeObject) {
+                EventAggregator.addListener(eventName, eventHandler, scopeObject, { single: true });
+            },
+
+            unsubscribe: function unsubscribe(eventName, eventHandler, scopeObject) {
+                EventAggregator.removeListener(eventName, eventHandler, scopeObject);
+            }
+
+        });
+    }
+    //eventAggregator();
+    var eventDelegation= function() {
+
+
+        var panel = new Ext.panel.Panel({
+            renderTo: document.body,
+            width: 400,
+            height: 400,
+            title: 'Event Delegation Test',
+            tpl: '<tpl for="."><div><span class="foo-div">{foo}</span> {bar}</div></tpl>',
+            data: [
+                { foo: 'One', bar: 'one' },
+                { foo: 'Two', bar: 'two' },
+                { foo: 'Three', bar: 'three' }
+            ],
+            listeners: {
+                element: 'el',
+                delegate: 'span.foo-div',
+                click: function () {
+                    console.log('click');
+                }
+            }
+        });
+
+    }
+//    eventDelegation();
+
+    var xTemplate = function () {
+    
+        var productData = [{
+            name: 'Product A',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 1.99,
+            sale: true
+        }, {
+            name: 'Product B',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 6.99
+        }, {
+            name: 'Product C',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 19.99
+        }, {
+            name: 'Product D',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 14.99
+        }, {
+            name: 'Product E',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 4.99,
+            sale: true
+        }, {
+            name: 'Product F',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 49.99
+        }, {
+            name: 'Product G',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            price: 4.99
+        }];
+
+        var categoryData = [{
+            name: 'Toys',
+            children: [{
+                name: 'Infant'
+            }, {
+                name: 'Preschool'
+            }]
+        }, {
+            name: 'Books',
+            children: [{
+                name: 'Fiction',
+                children: [{
+                    name: 'Mystery'
+                }, {
+                    name: 'Sci-fi'
+                }]
+            }, {
+                name: 'Non-fiction',
+                children: [{
+                    name: 'Biographies'
+                }]
+            }]
+        }, {
+            name: 'Electronics'
+        }];
+
+        var categoriesTpl = new Ext.XTemplate(
+        '<tpl for=".">',
+            '<span class="category">- {name}</span>',
+            '<div class="children">',
+                '{[ this.recurse(values) ]}',
+            '</div>',
+        '</tpl>',
+        {
+            compiled: true,
+            recurse: function (values) {
+                if (values.children && values.children.length) {
+                    return this.apply(values.children);
+                }
+                return '';
+            }
+        }
+    );
+        var categories = new Ext.Component({
+            cls: 'categories',
+            width: 200,
+            html: categoriesTpl.apply(categoryData)
+        });
+
+      
+
+        Ext.XTemplate.prototype.preGroupString = function (xindex, groupCount, str) {
+            return xindex == 1 || xindex % groupCount == 1 ? str : "";
+        };
+
+        Ext.XTemplate.prototype.postGroupString = function (xindex, xcount, groupCount, str) {
+            return xindex == xcount || xindex % groupCount == 0 ? str : "";
+        };
+
+        var productTpl = new Ext.XTemplate(
+        '<div class="product">',
+            '<span class="name">{name}</span>',
+            '<span class="price {[ this.saleClass(values) ]}">{price:usMoney}</span>',
+            '<div class="desc">{desc}</div>',
+        '</div>',
+        {
+            compiled: true,
+            saleClass: function (values) {
+                return values.sale ? 'sale' : '';
+            }
+        }
+    );
+
+        var productsTpl = new Ext.XTemplate(
+            '<tpl for=".">',
+                '{[ this.preGroupString(xindex, 3, "<div class=\\"group\\">") ]}',
+                '{[ this.renderProduct(values) ]}',
+                '{[ this.postGroupString(xindex, xcount, 3, "</div>") ]}',
+            '</tpl>',
+            {
+                renderProduct: function (values) {
+                    return productTpl.apply(values);
+                }
+            }
+        );
+
+
+        var products = new Ext.DataView({
+            cls: 'productlist',
+            flex: 1,
+            tpl: productsTpl,
+            store: new Ext.data.JsonStore({
+                fields: ['name', 'desc', 'price', 'sale'],
+                data: productData
+            }),
+            itemSelector: '.product'
+        });
+
+        var main = new Ext.Container({
+            layout: {
+                type: 'hbox',
+                align: 'top'
+            },
+            items: [categories, products]
+        });
+
+        var details = new Ext.Component({
+            cls: 'details',
+            tpl: productTpl
+        });
+
+        var card = new Ext.Container({
+            renderTo: 'content',
+            layout: 'card',
+            activeItem: 0,
+            items: [main, details]
+        });
+
+        products.on('click', function (dv, index, node) {
+            var record = dv.getStore().getAt(index);
+            details.update(record.data);
+            card.getLayout().setActiveItem(details);
+        });
+
+        Ext.fly('header').on('click', function () {
+            card.getLayout().setActiveItem(main);
+        });
+
+    }
+
+
+
+
+
+    xTemplate();
+
 });

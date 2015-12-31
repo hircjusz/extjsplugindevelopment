@@ -8106,7 +8106,7 @@ Ext.ux.Spinner = Ext.extend(Ext.util.Observable, {
         this.proxy.addClass("x-form-spinner-proxy");
         this.proxy.setStyle('left', '0px');
         this.proxy.setSize(14, 1);
-        this.proxy.hide();
+        this.proxy.hide();ext
         this.dd = new Ext.dd.DDProxy(this.splitter.dom.id, "SpinnerDrag", {
             dragElId: this.proxy.id
         });
