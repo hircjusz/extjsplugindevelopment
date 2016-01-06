@@ -81,7 +81,13 @@ Ext.onReady(function () {
                     duration: 500,
                     easing: 'easeIn',
                     callback: function () {
-                        cmp.select('.x-message-bar-msg').update(cfg.text);
+                        this.setMessageData({
+                            text: cfg.text,
+                            iconCls: 'x-message-' + (cfg.type || '') + ' ',
+                            clear: Ext.isDefined(cfg.clear) ? cfg.clear : true
+
+                        });
+                        //cmp.select('.x-message-bar-msg').update(cfg.text);
                     },
                     scope: this
                 });
@@ -90,6 +96,55 @@ Ext.onReady(function () {
             //todo icon classes
            // cmp.select('.x-message-bar-msg').update(cfg.text);
            // cmp.show();
+        },
+        setMessageData: function(o) {
+            o = o || {};
+            if (o.text) {
+                this.setText(o.text);
+            }
+            if (o.iconCls) {
+                var bar = Ext.get(this.id + '-bar');
+
+                if (o.iconCls == 'x-message-error ') {
+                    bar.removeCls('x-message-msg-body');
+                    bar.addCls('x-message-error-body');
+                } else {
+                    bar.removeCls('x-message-error-body');
+                    bar.addCls('x-message-msg-body');
+                }
+                this.setIcon(o.iconCls);
+
+            }
+            if (o.clear) {
+                var c = o.clear;
+                if (Ext.isNumber(c)) {
+
+                    Ext.defer(this.clearMessage, c, this, [c]);
+                }
+            }
+
+
+        },
+        setIcon: function(cls) {
+
+            cls = cls || '';
+            if (this.currIconCls) {
+                Ext.get(this.id + '-bar').removeCls(this.currIconCls);
+                this.currIconCls = null;
+            }
+            if (cls.length > 0) {
+                Ext.get(this.id + '-bar').addCls(cls);
+                this.currIconCls = cls;
+            }
+            return this;
+        },
+
+        setText: function(text) {
+            this.text = text || '';
+            if (this.rendered) {
+                Ext.get(this.id + '-bar').select('.x-message-bar-msg').update(this.text);
+            }
+            return this;
         }
     });
 

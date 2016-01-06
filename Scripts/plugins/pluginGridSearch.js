@@ -24,7 +24,12 @@ Ext.onReady(function () {
             paramNames: {
                 fields: 'fields'
                 , query: 'query'
-            }
+            },
+            menucontext:[
+            {
+                text: 'AddRecord',
+                handler: function() {}
+            }]
 
         },
 
@@ -41,6 +46,7 @@ Ext.onReady(function () {
         onRender: function () {
             var tb = this.getToolbar();
             this.menu = new Ext.menu.Menu();
+
 
             this.field = Ext.create("Ext.form.field.Trigger", {
                 width: this.width,
@@ -80,6 +86,31 @@ Ext.onReady(function () {
             }, this.field);
 
             this.initMenu();
+            //gridpanel context menu
+            if (this.menucontext) {
+
+                if(!(this.menucontext instanceof Ext.menu.Menu)) {
+                    this.menucontext = this.buildMenuContext(this.menucontext);
+                }
+                this.grid.on({
+                    scope: this,
+                    itemcontexmenu:this.onItemContextMenu
+                });
+
+            }
+
+        },
+        buildMenuContext: function (menuCfg) {
+            if (Ext.isArray(menuCfg)) {
+                menuCfg= {
+                    items:menuCfg
+                }
+            }
+            return  Ext.create('Ext.menu.Menu',menuCfg);
+        },
+        onItemContextMenu: function(grid,model,row,index,evt) {
+            evt.stopEvent();
+            this.menucontext.showAt(evt.getXY());
 
         },
         initMenu : function() {
