@@ -338,6 +338,14 @@ Ext.onReady(function() {
             Ext.create(Ext.extensions.form.standardnotation.StandardNotation, { renderTo: document.body });
         };
 
-    standardNotationComboBox();
+    //standardNotationComboBox();
+        var extElement = function () {
+
+            Ext.DomHelper.createDom({ tag: 'div', cls: 'new-div-cls', id: 'new-div-id' }, document.body);
+            var el = Ext.get(Ext.query('.new-div-cls')[0]);
+            el.addClass('test-class1');
+            var flag= el.isScrollable();
+        };
+        extElement();
 
 });

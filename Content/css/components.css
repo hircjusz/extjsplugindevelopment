@@ -21,7 +21,11 @@
     background-image: url(images/download.gif);
     margin-left: -5px;
 }
-
+.new-div-cls {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
 /*!
  * Ext JS Library 3.4.0
  * Copyright(c) 2006-2011 Sencha Inc.

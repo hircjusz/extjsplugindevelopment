@@ -806,5 +806,10 @@
 
     };
 
-    comboBoxTemplates();
+    var extElement = function() {
+
+        var el = Ext.DomHelper.createDom({ tag: 'div', cls: 'new-div-cls', id: 'new-div-id' }, document.body);
+        el.addCls('test-class1');
+    };
+    extElement();
 });
