@@ -42,11 +42,12 @@ Ext.onReady(function () {
 
         }, showMessage: function () {
             var text = this.down('textfield').getValue(),
-                type =  '';
+                type =  'info';
 
             this.down('ux-msgbar').showMessage({
                 text: text,
-                type: type
+                type: type,
+                clear:200
             });
 
         }
