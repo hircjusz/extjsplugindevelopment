@@ -13,7 +13,7 @@ Ext.onReady(function() {
             Ext.apply(this, {
                 border: false,
                 store: Ext.create('ns.store.DummyStore'),
-                plugins: ['gridsearch'],
+                plugins: ['gridsearch', 'varheaders'],
                 dockedItems: [
                     {
                         xtype: 'toolbar',

@@ -6,6 +6,17 @@
  */
 Ext.onReady(function () {
 
+    Ext.define('Ext.ux.grid.VarHeaders', {
+        extend: 'Ext.util.Observable',
+        alias: 'plugin.varheaders',
+        init: function(cmp) {
+            
+
+        }
+
+
+    });
+
 
     Ext.define("Examples.plugin.GridSearch", {
         extend: 'Ext.util.Observable',
