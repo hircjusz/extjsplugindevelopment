@@ -1,0 +1,16 @@
+﻿@*@{
+    ViewBag.Title = "ClearButton";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ClearButton</h2>
+
+<div id="grid"></div>
+@section JavaScript
+{
+    @Scripts.Render("~/Scripts/plugins/pluginClearButton.js")
+    @Scripts.Render("~/Scripts/view/ClearButtonView.js")
+}
+@section Styles{
+     @Styles.Render("~/Content/css/clearbutton.css")
+}*@

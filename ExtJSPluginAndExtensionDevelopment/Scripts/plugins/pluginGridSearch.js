@@ -190,6 +190,7 @@ Ext.onReady(function () {
         },
         onTriggerSearch: function() {
 
+
             if (!this.field.isValid()) {
                 return;
             }

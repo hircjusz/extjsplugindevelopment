@@ -708,6 +708,7 @@
     <Content Include="Views\Ext\XTemplate.cshtml" />
     <Content Include="Views\Shared\_Layout34.cshtml" />
     <Content Include="Views\Ext\LabeledSpinner.cshtml" />
+    <Content Include="Views\Ext\BoxSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
