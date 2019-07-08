@@ -8,11 +8,12 @@ Ext.onReady(function () {
 
     var form = new Ext.form.FormPanel({
         renderTo: Ext.getBody(),
+        height:200,
         items: [
 		{
 		    xtype: "textfield",
 		    label: "TextField",
-		    plugins: Ext.create('Examples.plugin.Sms')//['plugin.sms']
+		    plugins:['sms']
 		}
 	]
     });
