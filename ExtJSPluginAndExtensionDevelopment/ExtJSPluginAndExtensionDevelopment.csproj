@@ -138,6 +138,7 @@
     <Content Include="Content\css\all.css" />
     <Content Include="Content\css\awesomeclock.css" />
     <Content Include="Content\css\CheckHeader.css" />
+    <Content Include="Content\css\labeledspinner.css" />
     <Content Include="Content\css\clearbutton.css" />
     <Content Include="Content\css\components.css" />
     <Content Include="Content\css\ext-theme-classic\ext-theme-classic-all-debug.css" />
@@ -667,6 +668,7 @@
     <Content Include="Scripts\plugins\messageBar.js" />
     <Content Include="Scripts\plugins\pluginClearButton.js" />
     <Content Include="Scripts\plugins\pluginGridSearch.js" />
+    <Content Include="Scripts\plugins\pluginLabeledSpinner.js" />
     <Content Include="Scripts\plugins\pluginSms.js" />
     <Content Include="Scripts\store\DummyStore.js" />
     <Content Include="Scripts\store\SampleTreeStore.js" />
@@ -675,6 +677,7 @@
     <Content Include="Scripts\view\ClearButtonView.js" />
     <Content Include="Scripts\view\GridSearchGrid.js" />
     <Content Include="Scripts\view\GridSearchWindow.js" />
+    <Content Include="Scripts\view\LabeledSpinnerView.js" />
     <Content Include="Scripts\view\MessageBarView.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -704,6 +707,7 @@
     <Content Include="Views\Ext\SessionModel.cshtml" />
     <Content Include="Views\Ext\XTemplate.cshtml" />
     <Content Include="Views\Shared\_Layout34.cshtml" />
+    <Content Include="Views\Ext\LabeledSpinner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

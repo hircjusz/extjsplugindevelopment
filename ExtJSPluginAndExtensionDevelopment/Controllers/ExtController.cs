@@ -12,6 +12,11 @@ namespace ExtJsPlugins.Controllers
         //
         // GET: /Ext/
 
+        public ActionResult LabeledSpinner()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();

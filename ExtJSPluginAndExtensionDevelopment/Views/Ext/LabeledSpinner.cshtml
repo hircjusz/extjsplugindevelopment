@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Labelled Spinner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LabeledSpinner</h2>
+
+<div id="grid"></div>
+@section JavaScript
+{
+    @Scripts.Render("~/Scripts/plugins/pluginLabeledSpinner.js")
+    @Scripts.Render("~/Scripts/view/LabeledSpinnerView.js")
+}
+@section Styles{
+     @Styles.Render("~/Content/css/labeledspinner.css")
+}
